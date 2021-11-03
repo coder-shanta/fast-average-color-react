@@ -11,6 +11,9 @@ const App = () => {
             .then((res) => res.json())
             .then((data) => {
                 setImages(data.hits);
+            })
+            .catch(() => {
+                alert('API maximum rate limit reached. Try again after later.');
             });
     }, []);
 
