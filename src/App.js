@@ -17,7 +17,7 @@ const App = () => {
     return (
         <div>
             <header className="header">
-                <h1>FastAvarageColor</h1>
+                <h1>FastAverageColor</h1>
                 <p>This is the react implementation of FastAvarageColor.</p>
 
                 <a href="https://github.com/coder-shanta/fast-average-color-react">
