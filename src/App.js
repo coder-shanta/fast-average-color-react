@@ -1,25 +1,37 @@
-import logo from './logo.svg';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+import ImageCard from './components/ImageCard';
+
+const App = () => {
+    const [images, setImages] = useState([]);
+
+    useEffect(() => {
+        fetch('https://pixabay.com/api/?key=24152025-f66880e921660d0f3d98f09a5')
+            .then((res) => res.json())
+            .then((data) => {
+                setImages(data.hits);
+            });
+    }, []);
+
+    return (
+        <div>
+            <header className="header">
+                <h1>FastAvarageColor</h1>
+                <p>This is the react implementation of FastAvarageColor.</p>
+            </header>
+
+            <div className="container">
+                {images.map((img, idx) => (
+                    <ImageCard
+                        key={idx}
+                        title={img.tags}
+                        image={img.previewURL}
+                    />
+                ))}
+            </div>
+        </div>
+    );
+};
 
 export default App;
