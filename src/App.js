@@ -19,6 +19,10 @@ const App = () => {
             <header className="header">
                 <h1>FastAvarageColor</h1>
                 <p>This is the react implementation of FastAvarageColor.</p>
+
+                <a href="https://github.com/coder-shanta/fast-average-color-react">
+                    Source code
+                </a>
             </header>
 
             <div className="container">
