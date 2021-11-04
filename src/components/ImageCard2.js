@@ -1,26 +1,34 @@
 import { useRef } from 'react';
-import FastAverageColor from 'fast-average-color';
+import ColorThief from 'colorthief';
 
 import './ImageCard.css';
 
-const ImageCard = ({ title, image }) => {
+const rgbToHex = (rgb) =>
+    '#' +
+    rgb
+        .map((x) => {
+            const hex = x.toString(16);
+            return hex.length === 1 ? '0' + hex : hex;
+        })
+        .join('');
+
+const ImageCard2 = ({ title, image }) => {
     const imgRef = useRef();
     const cardRef = useRef();
 
     const setBackgroundColor = () => {
-        const fac = new FastAverageColor();
         const img = imgRef.current;
         const card = cardRef.current;
 
-        fac.getColorAsync(img).then((color) => {
-            card.style.backgroundColor = color.rgba;
-            card.style.color = color.isDark ? '#fff' : '#000';
-        });
+        const ct = new ColorThief();
+
+        const rgb = ct.getColor(img);
+        card.style.backgroundColor = rgbToHex(rgb);
     };
 
     return (
         <div ref={cardRef} className="card">
-            <div className="tag">FastAverageColor</div>
+            <div className="tag">ColorThief</div>
             <img
                 ref={imgRef}
                 src={image}
@@ -42,4 +50,4 @@ const ImageCard = ({ title, image }) => {
     );
 };
 
-export default ImageCard;
+export default ImageCard2;

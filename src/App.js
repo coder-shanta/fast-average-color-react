@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 
 import ImageCard from './components/ImageCard';
+import ImageCard2 from './components/ImageCard2';
 
 const App = () => {
     const [images, setImages] = useState([]);
@@ -20,8 +21,11 @@ const App = () => {
     return (
         <div>
             <header className="header">
-                <h1>FastAverageColor</h1>
-                <p>This is the react implementation of FastAvarageColor.</p>
+                <h1>Fast Average Color vs Color Thief</h1>
+                <p>
+                    This is the react implementation of FastAvarageColor and
+                    colorthief.
+                </p>
 
                 <a href="https://github.com/coder-shanta/fast-average-color-react">
                     Source code
@@ -30,11 +34,10 @@ const App = () => {
 
             <div className="container">
                 {images.map((img, idx) => (
-                    <ImageCard
-                        key={idx}
-                        title={img.tags}
-                        image={img.previewURL}
-                    />
+                    <React.Fragment key={idx}>
+                        <ImageCard title={img.tags} image={img.previewURL} />
+                        <ImageCard2 title={img.tags} image={img.previewURL} />
+                    </React.Fragment>
                 ))}
             </div>
         </div>
